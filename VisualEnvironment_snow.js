@@ -1,7 +1,7 @@
 let img;
 
-var m_x = new float [2];
-var m_y = new float [2];
+// var m_x = new Array(2);
+// var m_y = new float [2];
 var now_x;
 var now_y;
 var old_x;
@@ -18,35 +18,47 @@ var p = false;
 
 var movecount = 100;
 
+// let width, height;
+
 function setup() {
-  fullScreen();
+  createCanvas(displayWidth,displayHeight);
 
-  img = document.getElemenById();
-  img.src = "snow.png";
+  img = loadImage("snow.png");
 
-  for (var i = 0; i < 2; i++) {
-    m_x[i] = 0;
-    m_y[i] = 0;
-  }
+  // for (var i = 0; i < 2; i++) {
+  //   m_x[i] = 0;
+  //   m_y[i] = 0;
+  // }
   old_x = 0;
   old_y = 0;
 
   next_x = 0;
   next_y = 0;
 
-  X = width/2;
-  Y = height/2;
+  X = displayWidth/2;
+  Y = displayHeight/2;
+
+  now_x = 0;
+  now_y = 0;
+
+  // width = displayWidth;
+  // height = displayHeight;
+
+
 }
 
 function draw() {
 
 
-  image(img1, 0, 0);
+  image(img, 0, 0);
 
-  if (p == true) {
+  if (p === true) {
     now_x = mouseX - pmouseX;
     now_y = mouseY - pmouseY;
   }
+
+  
+
 
   if (now_x != 0 || now_y != 0) {
     if(-1000 < next_x && next_x < 1000){
@@ -55,17 +67,22 @@ function draw() {
     if(-1000 < next_y && next_y < 1000){
       next_y = now_y + old_y;
     }
+
   }
   
   X += next_x/movecount;
   Y += next_y/movecount;
+
+
   
-  println(next_x, next_y);
+  // println(next_x, next_y);
 
 
   fill(235, 252, 252);
   noStroke();
-  ellipse(X, Y, r * 2, r * 2);
+  // ellipse(X, Y, r * 2, r * 2);
+  ellipse(X, Y, 20,20);
+  console.log(r);
   
   if(next_x > 0){
     next_x--;
