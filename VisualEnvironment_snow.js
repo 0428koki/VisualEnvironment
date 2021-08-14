@@ -1,4 +1,5 @@
 let img;
+let img_snow;
 
 // var m_x = new Array(2);
 // var m_y = new float [2];
@@ -23,7 +24,8 @@ var movecount = 100;
 function setup() {
   createCanvas(displayWidth,displayHeight);
 
-  img = loadImage("snow.png");
+  img = loadImage("snow_tate.png");
+  img_snow = loadImage("snowball_stroke.png");
 
   // for (var i = 0; i < 2; i++) {
   //   m_x[i] = 0;
@@ -49,8 +51,8 @@ function setup() {
 
 function draw() {
 
-
-  image(img, 0, 0);
+  
+  image(img, 0, 0, displayWidth, displayHeight);
 
   if (p === true) {
     now_x = mouseX - pmouseX;
@@ -77,12 +79,19 @@ function draw() {
   
   // println(next_x, next_y);
 
-
-  fill(235, 252, 252);
-  noStroke();
+  pushMatrix();
+    translate(X, Y);
+    rotate(radians(theta_x));
+    fill(235, 252, 252);
+    noStroke();
+    img_snow.resize(r * 2, r * 2);
+    image(img_snow, 0, 0);
+  popMatrix();
+  //fill(235, 252, 252);
+  //noStroke();
   // ellipse(X, Y, r * 2, r * 2);
-  ellipse(X, Y, 20,20);
-  console.log(r);
+  //ellipse(X, Y, 20,20);
+  //console.log(r);
   
   if(next_x > 0){
     next_x--;
